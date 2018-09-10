@@ -1,16 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Theme.DesignDemo" parent="Base.Theme.DesignDemo">
-    </style>
-
-    <style name="Base.Theme.DesignDemo" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/green_500</item>
-        <item name="colorPrimaryDark">@color/green_700</item>
-        <item name="colorAccent">@color/amber_500</item>
+    <style name="Base.Theme.DesignDemo" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorAccent">@color/color_accent</item>
         <item name="android:windowBackground">@color/window_background</item>
+        <item name="colorSecondary">@color/color_secondary</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.MyApp.Headline6</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.MyApp.Body1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.MyApp.Subtitle2</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.MyApp.Caption</item>
     </style>
 
+    <!-- Coming Soon -->
+    <!--<item name="colorSecondary">@color/color_secondary</item>-->
+    <!--<item name="colorSecondaryDark">@color/color_secondary_dark</item>-->
+    <!--<item name="colorSecondaryLight">@color/colors_secondary_light</item>-->
+
+    <!--<item name="colorPrimaryVariant">@color/green_600</item>-->
+    <!--<item name="colorSecondaryVariant">@color/green_600</item>-->
+    <!--<item name="colorBackground">@color/green_600</item>-->
+    <!--<item name="colorError">@color/green_600</item>-->
+    <!--<item name="colorSurface">@color/green_600</item>-->
+    <!--<item name="colorOnPrimary">@color/green_600</item>-->
+    <!--<item name="colorOnSecondary">@color/green_600</item>-->
+    <!--<item name="colorOnBackground">@color/green_600</item>-->
+    <!--<item name="colorOnError">@color/green_600</item>-->
+    <!--<item name="colorOnSurface">@color/green_600</item>-->
+
+
+    <!--Create custom style for a Component, that will be applied manually-->
     <style name="Widget.CardContent" parent="android:Widget">
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>
@@ -18,5 +38,40 @@
         <item name="android:paddingBottom">24dp</item>
         <item name="android:orientation">vertical</item>
     </style>
+
+    <!-- Example changes the color background to use Primary color instead of default Secondary for Button Backgrounds -->
+    <style name="CustomButton" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">?attr/colorPrimary</item>
+    </style>
+
+    <style name="TextScaleStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:background">@drawable/bg_selector</item>
+        <item name="android:onClick">scaleTextItemClicked</item>
+    </style>
+
+    <style name="TextAppearance.MyApp.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="fontFamily">@font/alegreya</item>
+    </style>
+
+    <style name="TextAppearance.MyApp.Body1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="fontFamily">@font/lato</item>
+    </style>
+
+    <style name="TextAppearance.MyApp.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="fontFamily">@font/lato</item>
+    </style>
+
+    <style name="TextAppearance.MyApp.Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="fontFamily">@font/lato</item>
+    </style>
+
+    <!-- then if you want to apply it to your app universally, make sure to add it to your base theme theme
+    <style name="Base.Theme.DesignDemo" parent="Theme.MaterialComponents.Light.NoActionBar">
+        ...
+        <item name="materialButtonStyle">@style/CustomButton</item>
+    </style> -->
 
 </resources>

@@ -1,62 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout
-    android:id="@+id/drawer_layout"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-    <android.support.design.widget.CoordinatorLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/main_content"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/appbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
-                app:layout_scrollFlags="scroll|enterAlways"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-
-        </android.support.design.widget.AppBarLayout>
-
-
-        <android.support.v4.widget.NestedScrollView
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:layout_marginBottom="48dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:paddingTop="24dp">
+                android:orientation="vertical">
 
-                <TextView
-                    style="@style/TextAppearance.AppCompat.Body1"
+                <!-- Setting icon, stroke, etc direct in the button -->
+                <Button
+                    android:id="@+id/show_bottom_sheet"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/activity_horizontal_margin"
-                    android:text="@string/profile_main_text"/>
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="@string/show_text_scale_bottom_sheet"
+                    app:icon="@drawable/vct_text_scale"
+                    app:iconTint="@color/white"
+                    app:strokeColor="@color/grey_200"
+                    app:strokeWidth="1dp" />
 
-                <android.support.v7.widget.CardView
+                <include layout="@layout/include_chip_card" />
+
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/info_card"
-                    cardCornerRadius="20dp"
-                    cardElevation="20dp"
-                    cardUseCompatPadding="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/card_margin">
+                    android:layout_margin="@dimen/card_margin"
+                    app:cardCornerRadius="@dimen/card_corner_rad"
+                    app:cardElevation="@dimen/card_elevation"
+                    app:cardUseCompatPadding="true">
 
                     <LinearLayout
                         style="@style/Widget.CardContent"
@@ -66,62 +55,84 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                            android:layout_marginTop="@dimen/activity_horizontal_margin"
-                            android:text="User Info"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
+                            android:layout_marginBottom="8dp"
+                            android:text="@string/user_info"
+                            android:textAppearance="?textAppearanceHeadline6" />
 
                         <TextView
-                            style="@style/TextAppearance.AppCompat.Body1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/profile_name_phone_text"/>
+                            android:text="@string/profile_name_phone_text"
+                            android:textAppearance="?textAppearanceBody1"
+                            android:textStyle="italic" />
 
-                        <android.support.design.widget.TextInputLayout
+                        <!-- There is lots you can do with the native controls -->
+                        <!-- https://material.io/develop/android/components/text-input-layout/ -->
+                        <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/name_editlayout"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="8dp"
-                            android:layout_marginTop="8dp">
+                            android:layout_marginTop="16dp"
+                            android:hint="@string/profile_nickname_hint"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="10">
 
-                            <android.support.v7.widget.AppCompatEditText
+                            <androidx.appcompat.widget.AppCompatEditText
                                 android:id="@+id/name_edit"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:focusable="true"
-                                android:hint="@string/profile_nickname_hint"
                                 android:inputType="textPersonName"
-                                android:maxLength="10"/>
-                        </android.support.design.widget.TextInputLayout>
+                                android:maxLength="20" />
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                        <android.support.design.widget.TextInputLayout
+                        <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/phone_editlayout"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:layout_marginTop="8dp">
+                            android:hint="@string/profile_phone_hint">
 
-                            <android.support.v7.widget.AppCompatEditText
+                            <androidx.appcompat.widget.AppCompatEditText
                                 android:id="@+id/phone_edit"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:focusable="true"
-                                android:hint="@string/profile_phone_hint"
                                 android:inputType="phone"
-                                android:maxLength="14"/>
-                        </android.support.design.widget.TextInputLayout>
+                                android:maxLength="14" />
+                        </com.google.android.material.textfield.TextInputLayout>
 
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/password_editlayout"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:hint="@string/enter_a_password"
+                            app:passwordToggleEnabled="true">
+
+                            <androidx.appcompat.widget.AppCompatEditText
+                                android:id="@+id/password_edit"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:focusable="true"
+                                android:inputType="textPassword"
+                                android:maxLength="8" />
+                        </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
-                </android.support.v7.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
 
-                <android.support.v7.widget.CardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/prefs_card"
-                    cardCornerRadius="20dp"
-                    cardElevation="20dp"
-                    cardUseCompatPadding="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/card_margin">
+                    android:layout_margin="@dimen/card_margin"
+                    app:cardCornerRadius="@dimen/card_corner_rad"
+                    app:cardElevation="@dimen/card_elevation"
+                    app:cardUseCompatPadding="true">
 
                     <LinearLayout
                         style="@style/Widget.CardContent"
@@ -133,15 +144,15 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/activity_horizontal_margin"
                             android:text="Preferences"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
+                            android:textAppearance="?textAppearanceHeadline6" />
 
                         <TextView
-                            style="@style/TextAppearance.AppCompat.Body1"
+                            style="?textAppearanceBody1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/activity_horizontal_margin"
                             android:layout_marginTop="@dimen/activity_horizontal_margin"
-                            android:text="Have you ever owned any of these?"/>
+                            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                            android:text="@string/have_you_ever_owned_any_of_these" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -153,33 +164,31 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Nexus"/>
+                                android:text="@string/nexus" />
 
                             <CheckBox
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Android TV"/>
+                                android:text="@string/android_tv" />
 
                             <CheckBox
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Android Wear"/>
-
+                                android:text="@string/android_wear" />
                         </LinearLayout>
 
-
                         <TextView
-                            style="@style/TextAppearance.AppCompat.Body1"
+                            style="?textAppearanceBody1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/activity_horizontal_margin"
                             android:layout_marginTop="@dimen/activity_horizontal_margin"
-                            android:text="Which is your favorite device manufacturer?"/>
+                            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                            android:text="@string/which_is_your_favorite_device_manufacturer" />
 
                         <RadioGroup
-                            android:id="@+id/radioSex"
+                            android:id="@+id/manufacturer_group"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
 
@@ -187,74 +196,72 @@
                                 android:id="@+id/radioAsus"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Asus"/>
+                                android:text="@string/asus" />
 
                             <RadioButton
                                 android:id="@+id/radioHtc"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:checked="true"
-                                android:text="HTC"/>
+                                android:text="@string/htc" />
 
                             <RadioButton
                                 android:id="@+id/radioMoto"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Motorola"/>
+                                android:text="@string/motorola" />
 
                             <RadioButton
                                 android:id="@+id/radioOnePlus"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="One Plus One"/>
+                                android:text="@string/one_plus_one" />
 
                             <RadioButton
                                 android:id="@+id/radioSamsung"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Samsung"/>
+                                android:text="@string/samsung" />
 
                         </RadioGroup>
 
                         <TextView
-                            style="@style/TextAppearance.AppCompat.Body1"
+                            style="?textAppearanceBody1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/activity_horizontal_margin"
                             android:layout_marginTop="@dimen/activity_horizontal_margin"
-                            android:text="Where do you live?"/>
+                            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                            android:text="@string/where_do_you_live" />
 
                         <Spinner
                             android:id="@+id/android_spinner"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:entries="@array/country_arrays"/>
+                            android:entries="@array/country_arrays" />
 
                         <TextView
-                            style="@style/TextAppearance.AppCompat.Body1"
+                            style="?textAppearanceBody1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/activity_horizontal_margin"
                             android:layout_marginTop="@dimen/activity_horizontal_margin"
-                            android:text="Rate your feelings about Android"/>
+                            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                            android:text="@string/rate_your_feelings_about_android" />
 
                         <RatingBar
                             android:id="@+id/android_rating"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-
+                            android:layout_height="wrap_content" />
                     </LinearLayout>
-                </android.support.v7.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
 
-                <android.support.v7.widget.CardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/profile_pic_card"
-                    cardCornerRadius="20dp"
-                    cardElevation="20dp"
-                    cardUseCompatPadding="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/card_margin">
+                    android:layout_margin="@dimen/card_margin"
+                    app:cardCornerRadius="@dimen/card_corner_rad"
+                    app:cardElevation="@dimen/card_elevation"
+                    app:cardUseCompatPadding="true">
 
                     <LinearLayout
                         style="@style/Widget.CardContent"
@@ -265,38 +272,51 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_account_lg"/>
+                            android:src="@drawable/ic_account_lg" />
 
                         <Button
                             android:id="@+id/profile_pic_button"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Change Profile Picture"/>
+                            android:text="@string/change_profile_picture" />
 
                     </LinearLayout>
-                </android.support.v7.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
             </LinearLayout>
-        </android.support.v4.widget.NestedScrollView>
+        </androidx.core.widget.NestedScrollView>
 
-        <!-- app:layout_anchor="@id/info_card"
-            app:layout_anchorGravity="top|right|end" -->
-        <android.support.design.widget.FloatingActionButton
+        <!-- Bottom Sheet Layout With Scale Text Info -->
+        <include layout="@layout/include_scaletext_layout" />
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottom_appbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_height"
+            android:layout_gravity="bottom"
+            android:elevation="8dp"
+            app:backgroundTint="@color/color_primary"
+            app:fabAlignmentMode="center"
+            app:fabCradleMargin="8dp"
+            app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light"
+            app:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:layout_margin="@dimen/fab_margin"
-            android:src="@drawable/ic_save"/>
+            android:layout_gravity="bottom|center_horizontal"
+            android:src="@android:drawable/ic_dialog_email"
+            app:layout_anchor="@+id/bottom_appbar" />
 
-    </android.support.design.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <android.support.design.widget.NavigationView
+    <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/drawer_actions"/>
+        app:menu="@menu/drawer_actions" />
 
-</android.support.v4.widget.DrawerLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
